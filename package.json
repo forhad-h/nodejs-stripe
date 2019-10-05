@@ -1,0 +1,29 @@
+{
+  "name": "nodejs-stripe",
+  "version": "1.0.0",
+  "description": "Stripe payment gateway in Node.js",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/forhad-h/nodejs-stripe.git"
+  },
+  "keywords": [
+    "nodejs",
+    "stripe"
+  ],
+  "author": "Forhad Hosain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/forhad-h/nodejs-stripe/issues"
+  },
+  "homepage": "https://github.com/forhad-h/nodejs-stripe#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "stripe": "^7.9.1"
+  }
+}

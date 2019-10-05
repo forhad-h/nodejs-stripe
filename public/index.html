@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stripe Checkout Integration in Node.js</title>
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <h2>Stripe Checkout Example</h2>
+
+    <div id="shop">
+      <button id="buttonCheckout">Checkout</button>
+    </div>
+  </body>
+  <script>
+    var stripe = Stripe('publishable-key')
+    var button = document.getElementById('buttonCheckout')
+    button.addEventListener('click', function(ev) {
+      fetch('http://localhost:8000/checkout')
+        .then(res => res.json())
+        .then(({ sessionId }) => {
+          stripe
+            .redirectToCheckout({
+              sessionId: sessionId
+            })
+            .then(function(result) {
+              console.log(result)
+            })
+        })
+    })
+  </script>
+</html>
