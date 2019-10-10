@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dynamic subscription</title>
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <h2>Stripe Checkout Example</h2>
+
+    <div id="shop">
+      <button id="buttonCheckout">Checkout</button>
+    </div>
+  </body>
+  <script>
+    var stripe = Stripe('pk_test_1467k9kfdxzS2fpZN65aTIcz004es9Yp4b')
+    var button = document.getElementById('buttonCheckout')
+
+    button.addEventListener('click', function() {
+      fetch('http://localhost:8000/checkout', {
+        method: 'POST'
+      })
+        .then(res => res.json())
+        .then(({ sessionId }) => {
+          // complete the payment
+          stripe
+            .redirectToCheckout({
+              sessionId: sessionId
+            })
+            .then(function(result) {
+              console.log(result)
+            })
+            .catch(function(err) {
+              return console.log(err)
+            })
+        })
+    })
+  </script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dynamic product purchase</title>
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <h2>Stripe Checkout Example</h2>
+
+    <div id="shop">
+      <button id="buttonCheckout">Checkout</button>
+    </div>
+  </body>
+  <script>
+    var stripe = Stripe('publishable-key-here')
+    var button = document.getElementById('buttonCheckout')
+
+    button.addEventListener('click', function() {
+      fetch('http://localhost:8000/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ amount: 500 }) // 500 = 5.00
+      })
+        .then(res => res.json())
+        .then(({ sessionId }) => {
+          // complete the payment
+          stripe
+            .redirectToCheckout({
+              sessionId: sessionId
+            })
+            .then(function(result) {
+              console.log(result)
+            })
+            .catch(function(err) {
+              return console.log(err)
+            })
+        })
+    })
+  </script>
+</html>

@@ -1,6 +1,6 @@
 var checkoutHandler = StripeCheckout.configure({
   // Publishable API key
-  key: 'publishable-key',
+  key: 'publishable-key-here',
   locale: 'auto'
 })
 var button = document.getElementById('buttonCheckout')
@@ -12,7 +12,7 @@ button.addEventListener('click', function (ev) {
   })
 })
 
-function handleToken (token) {
+function handleToken(token) {
   fetch('/charge', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

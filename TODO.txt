@@ -1,2 +1,4 @@
-# refactor code
-# recurring payment
+From - https://stripe.com/docs/payments/checkout/migration#client-products
+# Connect platforms and marketplaces
+# Saving payment methods for future use
+# study some Parameters
